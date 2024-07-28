@@ -1,3 +1,7 @@
+"scripts": {
+  "build": "webpack --mode production"
+}
+
 {
   "name": "channel-Bot",
   "version": "1.0.0",
