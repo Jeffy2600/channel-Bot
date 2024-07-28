@@ -18,11 +18,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
-        run: npx tsc
+        run: npx tsc  # หรือใช้ tsc โดยตรงหากได้ติดตั้งแล้ว
       - name: Build Docker image
         run: docker build -t my-discord-bot .
       - name: Run Docker container
         run: docker run -d -p 8080:8080 my-discord-bot
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-
+          
