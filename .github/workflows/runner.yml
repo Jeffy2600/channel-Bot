@@ -19,6 +19,6 @@ jobs:
         run: npm ci
         working-directory: ./
       - name: Deploy
-        uses: ./.github/workflows/deploy.yml
+        uses: ./.github/workflows/
         with:
           token: ${{ secrets.DISCORD_TOKEN }}
