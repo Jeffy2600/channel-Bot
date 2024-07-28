@@ -1,3 +1,7 @@
-"dependencies": {
-    "typescript": "^4.9.4" // ปรับ version ให้ตรงกับที่คุณต้องการ
+{
+  "name": "my-bot",
+  "version": "1.0.0",
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  }
 }
