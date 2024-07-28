@@ -18,11 +18,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
-        # เพิ่มขั้นตอนการ build แอปพลิเคชันของคุณที่นี่
-        # เช่น ถ้าคุณใช้ TypeScript อาจจะใช้:
-        # run: npx tsc
-      - name: Start bot
-        run: node index.js
+        run: npx tsc
+      - name: Build Docker image
+        run: docker build -t my-discord-bot .
+      - name: Run Docker container
+        run: docker run -d -p 8080:8080 my-discord-bot
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-          
+
