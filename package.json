@@ -1,11 +1,3 @@
-{
-  "name": "my-discord-bot",
-  "version": "1.0.0",
-  "description": "A simple Discord bot",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "discord.js": "^14.7.1"
-  }
+"dependencies": {
+    "typescript": "^4.9.4" // ปรับ version ให้ตรงกับที่คุณต้องการ
 }
