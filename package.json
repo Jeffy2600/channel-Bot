@@ -1,8 +1,9 @@
 {
-  "name": "my-bot",
+  "name": "my-discord-bot",
   "version": "1.0.0",
+  "description": "A simple Discord bot",
   "scripts": {
-    "build": "webpack --mode production"
+    "start": "node index.js"
   },
   "dependencies": {
     "discord.js": "^14.7.1"
