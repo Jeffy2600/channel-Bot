@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,16 +18,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
         working-directory: ./
-      - name: Build
-        run: npm run build  # สมมติว่าใช้ script "build" ใน package.json
-        working-directory: ./
-      - name: Cache build artifacts
-        uses: actions/cache@v3
-        with:
-          path: ./dist
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-build
       - name: Deploy
         uses: ./.github/workflows/deploy.yml
         with:
           token: ${{ secrets.DISCORD_TOKEN }}
-          
