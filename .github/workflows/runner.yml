@@ -1,8 +1,7 @@
-name: Discord Bot Deployment
+name: Deploy to Discord
 
 on:
-  push:
-    branches: [ main ]
+  workflow_call:
 
 jobs:
   deploy:
@@ -11,14 +10,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: npm
       - name: Install dependencies
         run: npm ci
-        working-directory: ./
       - name: Deploy
-        uses: ./.github/workflows/action.yml
+        uses: ./.github/workflows/action.yml  # เปลี่ยน my-action เป็นชื่อไฟล์ของคุณ
         with:
           token: ${{ secrets.DISCORD_TOKEN }}
+          
