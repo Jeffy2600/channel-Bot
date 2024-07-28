@@ -37,4 +37,4 @@ for (const file of commandFiles) {
 
 client.application.commands.set(commands);
 
-client.login(process.env.token);
+client.login(process.env.DISCORD_TOKEN);
