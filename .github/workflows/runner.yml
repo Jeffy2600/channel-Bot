@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Deploy
-        uses: ./.github/workflows/action.yml  # เปลี่ยน my-action เป็นชื่อไฟล์ของคุณ
+        uses: ./.github/workflows  # เปลี่ยน my-action เป็นชื่อไฟล์ของคุณ
         with:
           token: ${{ secrets.DISCORD_TOKEN }}
           
