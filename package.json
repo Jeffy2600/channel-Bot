@@ -1,7 +1,6 @@
 {
   "name": "your-bot-name", // เปลี่ยนเป็นชื่อของโครงการของคุณ
   "version": "1.0.0",
-  "description": "",
   "main": "index.js", // หรือชื่อไฟล์หลักของคุณ
   "scripts": {
     "start": "node index.js"
