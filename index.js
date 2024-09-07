@@ -1,40 +1,32 @@
-require('dotenv').config();
-const { Client, GatewayIntentBits, SlashCommandBuilder } = require('discord.js');
+const { Client, Intents } = require('discord.js');
+const winston = require('winston');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+// กำหนดค่า log
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  defaultMeta: { service: 'user-service' },
+  transports: [
+    new winston.transports.File({ filename: 'combined.log' }),
+  ],
 });
 
-client.on('interactionCreate', async interaction => {
-  if (!interaction.isCommand()) return;
+// สร้าง client และ login
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+client.login(process.env.DISCORD_TOKEN);
 
-  const command = interaction.client.commands.get(interaction.commandName);
+client.on('ready', () => {
+  logger.info('Bot is ready!');
+});
 
-  if (!command) return;
-
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-    await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+client.on('message', message => {
+  if (message.content === 'ping') {
+    message.channel.send('Pong!');
   }
 });
 
-client.commands = new Collection();
+// จับข้อผิดพลาด
+client.on('error', error => {
+  logger.error('Error occurred:', error);
+});
 
-const commands = [];
-
-// Load commands from command.js
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  commands.push(command.data.toJSON());
-  client.commands.set(command.data.name, command);
-}
-
-client.application.commands.set(commands);
-
-client.login(process.env.DISCORD_TOKEN);
